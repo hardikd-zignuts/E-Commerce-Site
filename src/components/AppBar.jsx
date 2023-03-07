@@ -3,7 +3,6 @@ import {
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -18,24 +17,33 @@ import {
 } from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
 import user from "../assets/img/user.png";
+import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
-const Links = ["Dashboard", "Projects", "Team"];
+const LinksText = ["Home", "Products"];
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+const NavLink = ({ children }) => {
+  let routePath = "";
+  if (children === "Home") {
+    routePath = "/";
+  } else {
+    routePath = children.toLowerCase();
+  }
+  return (
+    <RouteLink
+      px={2}
+      py={1}
+      rounded={"md"}
+      _hover={{
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
+      }}
+      to={routePath}
+    >
+      {children}
+    </RouteLink>
+  );
+};
 
 export default function AppBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,15 +60,17 @@ export default function AppBar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>
-              <img id="logo" src={logo} alt="logo" />
-            </Box>
+            <RouteLink to="/">
+              <Box>
+                <img id="logo" src={logo} alt="logo" />
+              </Box>
+            </RouteLink>
             <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
+              {LinksText.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </HStack>
@@ -83,29 +93,35 @@ export default function AppBar() {
                 </Center>
                 <br />
                 <Center>
-                  <p>Username</p>
+                  <p>Hardik Desai</p>
                 </Center>
                 <br />
                 <MenuDivider />
-                <MenuItem>Your Servers</MenuItem>
-                <MenuItem>Account Settings</MenuItem>
-                <MenuItem>Logout</MenuItem>
+                <RouteLink to="profile">
+                  <MenuItem>Your Profile</MenuItem>
+                </RouteLink>
+                <RouteLink to="reset">
+                  <MenuItem>Change Password</MenuItem>
+                </RouteLink>
+                <RouteLink to="logout">
+                  <MenuItem>Logout</MenuItem>
+                </RouteLink>
               </MenuList>
             </Menu>
           </Flex>
         </Flex>
 
+        {/* Responsive Part */}
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
+              {LinksText.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
-
     </>
   );
 }
