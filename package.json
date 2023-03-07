@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -11,19 +12,18 @@
     "@testing-library/user-event": "^13.5.0",
     "concurrently": "^7.6.0",
     "framer-motion": "^10.1.0",
-    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
+    "sass": "^1.58.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "compile:sass": "node-sass src/assets/scss/main.scss src/assets/css/style.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "both": "concurrently \"npm run start\" \"npm run compile:sass\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
