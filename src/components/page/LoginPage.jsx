@@ -4,9 +4,7 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
@@ -24,9 +22,9 @@ export default function LoginPage() {
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
+          <Heading fontSize={"4xl"}>Log in to your account</Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️
+            to view all of our cool products 🛒
           </Text>
         </Stack>
         <Box
@@ -48,12 +46,11 @@ export default function LoginPage() {
               <Stack
                 direction={{ base: "column", sm: "row" }}
                 align={"start"}
-                justify={"space-between"}
+                justify={"center"}
+                color="blue.500"
               >
-                <Checkbox>Remember me</Checkbox>
-                <RouteLink to={"/signup"}>
-                  <Link color={"blue.400"}>Create New Account</Link>
-                </RouteLink>
+                {/* <Checkbox>Remember me</Checkbox> */}
+                <RouteLink to={"/signup"}>Create New Account</RouteLink>
               </Stack>
               <Button
                 bg={"blue.400"}

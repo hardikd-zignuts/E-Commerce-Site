@@ -14,11 +14,12 @@ import {
   useColorModeValue,
   Center,
   Stack,
+  useColorMode,
 } from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
 import user from "../assets/img/user.png";
 import { NavLink as RouteLink } from "react-router-dom";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const LinksText = ["Home"];
 
@@ -46,6 +47,7 @@ const NavLink = ({ children }) => {
 };
 
 export default function AppBar() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -76,6 +78,11 @@ export default function AppBar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
+            <div className="mx-2">
+              <Button onClick={toggleColorMode}>
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              </Button>
+            </div>
             <Menu>
               <MenuButton
                 as={Button}

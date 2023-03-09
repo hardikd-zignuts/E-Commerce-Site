@@ -1,8 +1,8 @@
-import { AUTH_LOGIN } from "../actionTypes/authTypes";
+import { AUTH_SET_DATA } from "../actionTypes/authTypes";
 
-const authLogin = (userData) => {
+export const authSetData = (userData) => {
     return {
-        type: AUTH_LOGIN,
-        userData: userData
+        type: AUTH_SET_DATA,
+        payLoad: userData
     }
 }
