@@ -23,14 +23,11 @@ const ProductGallery = () => {
 
   const handlePageClick = (index) => {
     setActive(index);
-    dispatch(updateFetchProduct((index + 1) * limit, limit));
+    dispatch(updateFetchProduct(index * limit, limit));
   };
   const items =
     productData.products &&
     productData.products.map((item, index) => {
-      if (index === 9) {
-        return false;
-      }
       return (
         <Pagination.Item
           onClick={() => handlePageClick(index)}

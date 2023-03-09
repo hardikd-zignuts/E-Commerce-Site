@@ -17,7 +17,9 @@ const Home = () => {
   return (
     <>
       <Toaster />
-      {error !== '' && <h1 className="text-center mt-4">No Products Available</h1>}
+      {error !== "" && (
+        <h1 className="text-center mt-4">No Products Available</h1>
+      )}
       {loading && (
         <div className="d-flex justify-content-center mt-5">
           <Vortex

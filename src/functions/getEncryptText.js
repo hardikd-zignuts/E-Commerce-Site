@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 const secretPass = "XkhZG4fW2t2W";
 
-const getEncryptText = (text) => {
+const GetEncryptText = (text) => {
     const data = CryptoJS.AES.encrypt(
         JSON.stringify(text),
         secretPass
@@ -9,4 +9,4 @@ const getEncryptText = (text) => {
     return data
 };
 
-export default getEncryptText
+export default GetEncryptText
