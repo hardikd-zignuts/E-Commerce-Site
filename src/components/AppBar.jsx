@@ -103,7 +103,7 @@ export default function AppBar() {
                 <RouteLink to="reset">
                   <MenuItem>Change Password</MenuItem>
                 </RouteLink>
-                <RouteLink to="logout">
+                <RouteLink to="login">
                   <MenuItem>Logout</MenuItem>
                 </RouteLink>
               </MenuList>
