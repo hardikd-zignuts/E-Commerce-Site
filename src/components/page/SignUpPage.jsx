@@ -19,15 +19,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { authSetData } from "../../redux/actions/authActions";
 
 export default function SignUpPage() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isAlready = useSelector((state) => state.auth.isAlready);
-
   const notify = () => toast.error("User Already Exists");
+  const navigate = useNavigate();
+  const isAlready = useSelector((state) => state.auth.isAlready);
+  const dispatch = useDispatch();
+
   const initialValues = {
-    firstName: "Hardik",
-    lastName: "Desai",
-    email: "hp636913@gmail.com",
+    firstName: "John",
+    lastName: "Doe",
+    email: "temp@mail.com",
     mobile: "6352604118",
     password: "11111111",
     cPassword: "111111111",
@@ -35,8 +35,10 @@ export default function SignUpPage() {
   const onSubmit = (values) => {
     dispatch(authSetData(values));
     if (isAlready) {
+      console.log("yes");
       notify();
     } else {
+      console.log("navigate");
       navigate("/products");
     }
   };
