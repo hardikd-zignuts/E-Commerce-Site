@@ -16,7 +16,6 @@ import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { authSetData } from "../../redux/actions/authActions";
-
 export default function SignUpPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ export default function SignUpPage() {
     cPassword: "111111111",
   };
   const onSubmit = (values) => {
-    console.log(values);
     dispatch(authSetData(values));
     navigate("/products");
   };
@@ -61,6 +59,7 @@ export default function SignUpPage() {
     onSubmit,
     validate,
   });
+
   return (
     <Flex
       minH={"100vh"}
