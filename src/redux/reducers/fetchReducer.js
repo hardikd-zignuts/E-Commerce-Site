@@ -1,9 +1,11 @@
-import { FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCCESS } from "../actionTypes/fetchTypes"
+import { FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCCESS, UPDATE_FETCH_PRODUCT } from "../actionTypes/fetchTypes"
 
 const initialData = {
     loading: false,
     error: '',
     productData: [],
+    skip: 0,
+    limit: 10
 }
 
 
@@ -29,6 +31,12 @@ const fetchReducer = (state = initialData, action) => {
                 loading: false,
                 productData: [],
                 error: action.payLoad
+            }
+        case UPDATE_FETCH_PRODUCT:
+            return {
+                ...state,
+                skip: action.skipNum,
+                limit: action.limitNum
             }
         default:
             return {

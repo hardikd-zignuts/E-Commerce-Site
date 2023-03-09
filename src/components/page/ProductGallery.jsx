@@ -1,30 +1,68 @@
-// import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
-// import { useDispatch,useSelector } from "react-redux";
-import DummyData from "../../constant/DummyData";
-// import { fetchProduct } from "../../redux/actions/fetchActions";
+import { useDispatch, useSelector } from "react-redux";
+// import DummyData from "../../constant/DummyData";
+import {
+  fetchProduct,
+  updateFetchProduct,
+} from "../../redux/actions/fetchActions";
+import { Pagination } from "react-bootstrap";
 import ProductDetail from "../common/ProductDetail";
 
 const ProductGallery = () => {
-  // const dispatch = useDispatch();
-  // const productData = useSelector((state) => state.fetch.productData);
-  // useEffect(() => {
-  //   dispatch(fetchProduct());
-  // }, [dispatch]);
+  const dispatch = useDispatch();
+  const productData = useSelector((state) => state.fetch.productData);
+  const skip = useSelector((state) => state.fetch.skip);
+  const limit = useSelector((state) => state.fetch.limit);
+  const loading = useSelector((state) => state.fetch.loading);
+  const [active, setActive] = useState(0);
 
+  useEffect(() => {
+    dispatch(fetchProduct(skip, limit));
+  }, [dispatch, skip, limit]);
+
+  const handlePageClick = (index) => {
+    setActive(index);
+    dispatch(updateFetchProduct((index + 1) * limit, limit));
+  };
+  const items =
+    productData.products &&
+    productData.products.map((item, index) => {
+      if (index === 9) {
+        return false;
+      }
+      return (
+        <Pagination.Item
+          onClick={() => handlePageClick(index)}
+          key={item.id}
+          active={active === index}
+        >
+          {index + 1}
+        </Pagination.Item>
+      );
+    });
   return (
     <>
-      <Row>
+      {/* <Row>
         {DummyData.products.map((item) => {
           return <ProductDetail key={`p${item.id}`} {...item} />;
         })}
-      </Row>
-      {/* <Row>
+      </Row> */}
+      <Row>
         {productData.products &&
+          !loading &&
           productData.products.map((item) => {
             return <ProductDetail key={`p${item.id}`} {...item} />;
           })}
-      </Row> */}
+      </Row>
+      <div className="d-flex justify-content-center mt-2 mb-4 pagination-footer">
+        <Pagination
+          className="flex-wrap justify-content-center pagination-sub"
+          size="lg"
+        >
+          {items}
+        </Pagination>
+      </div>
     </>
   );
 };

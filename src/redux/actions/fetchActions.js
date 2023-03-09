@@ -1,5 +1,6 @@
 import axios from "axios"
-import { FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCCESS } from "../actionTypes/fetchTypes"
+import { FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCCESS, UPDATE_FETCH_PRODUCT } from "../actionTypes/fetchTypes"
+
 
 export const fetchProductRequest = () => {
     return {
@@ -18,9 +19,16 @@ export const fetchProductFailure = error => {
         payLoad: error
     }
 }
+export const updateFetchProduct = (skip,limit) => {
+    return {
+        type: UPDATE_FETCH_PRODUCT,
+        skipNum:skip,
+        limitNum:limit
+    }
+}
 
-export const fetchProduct = () => {
-    const URL = 'https://dummyjson.com/products';
+export const fetchProduct = (skip = 0, limit = 10) => {
+    const URL = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
     return (dispatch) => {
         dispatch(fetchProductRequest())
         axios.get(URL)

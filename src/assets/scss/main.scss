@@ -27,6 +27,12 @@
   }
 }
 
-.row{
+.row {
   --bs-gutter-x: 0 !important;
+}
+
+.pagination-footer {
+  position: sticky;
+  bottom: 14px;
+  z-index: 10;
 }
