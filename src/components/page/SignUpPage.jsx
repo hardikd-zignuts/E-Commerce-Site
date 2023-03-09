@@ -4,9 +4,7 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
   HStack,
-  InputRightElement,
   Stack,
   Button,
   Heading,
@@ -14,12 +12,9 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Link as RouteLink } from "react-router-dom";
 
 export default function SignUpPage() {
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
     <Flex
       minH={"100vh"}
@@ -33,7 +28,7 @@ export default function SignUpPage() {
             Sign up
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool features ✌️
+            to view all of our cool products ✌️
           </Text>
         </Stack>
         <Box
@@ -61,21 +56,17 @@ export default function SignUpPage() {
               <FormLabel>Email address</FormLabel>
               <Input type="email" />
             </FormControl>
+            <FormControl id="mobile" isRequired>
+              <FormLabel>Mobile Number</FormLabel>
+              <Input type="tel" />
+            </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
-                <InputRightElement h={"full"}>
-                  <Button
-                    variant={"ghost"}
-                    onClick={() =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }
-                  >
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+              <Input type="password" />
+            </FormControl>
+            <FormControl id="cPassword" isRequired>
+              <FormLabel>Confirm Password</FormLabel>
+              <Input type="password" />
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
@@ -92,7 +83,10 @@ export default function SignUpPage() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user?
+                <RouteLink to={"/login"}>
+                  <Link color={"blue.400"}>Login</Link>
+                </RouteLink>
               </Text>
             </Stack>
           </Stack>

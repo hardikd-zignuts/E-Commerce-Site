@@ -20,7 +20,7 @@ import user from "../assets/img/user.png";
 import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
-const LinksText = ["Home", "Products"];
+const LinksText = ["Home"];
 
 const NavLink = ({ children }) => {
   let routePath = "";
