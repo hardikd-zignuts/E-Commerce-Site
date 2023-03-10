@@ -15,13 +15,15 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link as RouteLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authSetData } from "../../redux/actions/authActions";
+import CheckUserAuth from "../../functions/CheckUserAuth";
+import SetLocalData from "../../functions/SetLocalData";
+import GetEncryptText from "../../functions/GetEncryptText";
 
 export default function SignUpPage() {
   const notify = () => toast.error("User Already Exists");
   const navigate = useNavigate();
-  const isAlready = useSelector((state) => state.auth.isAlready);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -33,12 +35,16 @@ export default function SignUpPage() {
     cPassword: "111111111",
   };
   const onSubmit = (values) => {
+    const encData = GetEncryptText(values);
     dispatch(authSetData(values));
-    if (isAlready) {
-      console.log("yes");
+
+    if (localStorage.getItem("loginData") === null) {
+      SetLocalData(encData);
+      navigate("/products");
+    } else if (CheckUserAuth(values)) {
       notify();
     } else {
-      console.log("navigate");
+      SetLocalData(encData);
       navigate("/products");
     }
   };

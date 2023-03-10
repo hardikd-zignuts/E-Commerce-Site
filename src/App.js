@@ -9,6 +9,7 @@ import ProductGallery from './components/page/ProductGallery';
 import Profile from './components/page/Profile';
 import SignUpPage from './components/page/SignUpPage';
 function App() {
+
   return (
     <div className="App">
       <AppBar />
