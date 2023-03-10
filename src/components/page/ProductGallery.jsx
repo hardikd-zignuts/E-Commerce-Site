@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions/fetchActions";
 import { Pagination } from "react-bootstrap";
 import ProductDetail from "../common/ProductDetail";
+import { Vortex } from "react-loader-spinner";
 
 const ProductGallery = () => {
   const dispatch = useDispatch();
@@ -40,11 +41,18 @@ const ProductGallery = () => {
     });
   return (
     <>
-      {/* <Row>
-        {DummyData.products.map((item) => {
-          return <ProductDetail key={`p${item.id}`} {...item} />;
-        })}
-      </Row> */}
+      {loading && (
+        <div className="d-flex justify-content-center mt-5">
+          <Vortex
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="vortex-loading"
+            wrapperClass="vortex-wrapper"
+            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
+          />
+        </div>
+      )}
       <Row>
         {productData.products &&
           !loading &&

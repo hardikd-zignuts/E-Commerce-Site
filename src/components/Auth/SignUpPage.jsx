@@ -32,7 +32,7 @@ export default function SignUpPage() {
     email: "temp@mail.com",
     mobile: "6352604118",
     password: "11111111",
-    cPassword: "111111111",
+    cPassword: "11111111",
   };
   const onSubmit = (values) => {
     const encData = GetEncryptText(values);

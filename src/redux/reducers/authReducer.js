@@ -1,5 +1,5 @@
 import CheckUserAuth from "../../functions/CheckUserAuth";
-import { AUTH_SET_DATA } from "../actionTypes/authTypes"
+import { AUTH_SET_DATA, AUTH_SET_STATUS } from "../actionTypes/authTypes"
 const initialData = {
     userData: [],
     isLogin: false
@@ -23,6 +23,14 @@ const authReducer = (state = initialData, action) => {
                 userData: tempData,
                 isLogin: isLogin
             }
+
+
+        case AUTH_SET_STATUS: {
+            return {
+                ...state,
+                isLogin: !state.isLogin
+            }
+        }
         default:
             return {
                 ...state

@@ -26,7 +26,7 @@ const LinksText = ["Home"];
 const NavLink = ({ children }) => {
   let routePath = "";
   if (children === "Home") {
-    routePath = "/";
+    routePath = "/products";
   } else {
     routePath = children.toLowerCase();
   }
@@ -62,7 +62,7 @@ export default function AppBar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <RouteLink to="/">
+            <RouteLink to="/products">
               <Box>
                 <img id="logo" src={logo} alt="logo" />
               </Box>
@@ -110,7 +110,10 @@ export default function AppBar() {
                 <RouteLink to="reset">
                   <MenuItem>Change Password</MenuItem>
                 </RouteLink>
-                <RouteLink to="signup">
+                <RouteLink
+                  onClick={() => localStorage.setItem("isLogin", false)}
+                  to="signup"
+                >
                   <MenuItem>Logout</MenuItem>
                 </RouteLink>
               </MenuList>
