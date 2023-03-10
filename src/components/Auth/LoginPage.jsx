@@ -24,13 +24,13 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const initialValues = {
     email: "temp@mail.com",
-    password: "11111111",
+    password: "hardik@00110",
   };
   const onSubmit = (values) => {
     if (IsHaveAccount(values)) {
-      dispatch(authSetStatus());
-      navigate("/products");
       localStorage.setItem("isLogin", true);
+      dispatch(authSetStatus(true));
+      navigate("/products");
     } else {
       notify();
     }

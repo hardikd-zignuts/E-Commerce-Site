@@ -2,7 +2,7 @@ import CheckUserAuth from "../../functions/CheckUserAuth";
 import { AUTH_SET_DATA, AUTH_SET_STATUS } from "../actionTypes/authTypes"
 const initialData = {
     userData: [],
-    isLogin: false
+    isLogin: localStorage.getItem('isLogin'),
 }
 
 const authReducer = (state = initialData, action) => {
@@ -28,7 +28,7 @@ const authReducer = (state = initialData, action) => {
         case AUTH_SET_STATUS: {
             return {
                 ...state,
-                isLogin: !state.isLogin
+                isLogin: action.payLoad
             }
         }
         default:

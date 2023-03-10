@@ -20,6 +20,8 @@ import logo from "../assets/img/logo.png";
 import user from "../assets/img/user.png";
 import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { useDispatch } from "react-redux";
+import { authSetStatus } from "../redux/actions/authActions";
 
 const LinksText = ["Home"];
 
@@ -49,6 +51,7 @@ const NavLink = ({ children }) => {
 export default function AppBar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -111,11 +114,17 @@ export default function AppBar() {
                   <MenuItem>Change Password</MenuItem>
                 </RouteLink>
                 <RouteLink
-                  onClick={() => localStorage.setItem("isLogin", false)}
+                  onClick={() => dispatch(authSetStatus(false))}
                   to="signup"
                 >
                   <MenuItem>Logout</MenuItem>
                 </RouteLink>
+                {/* <RouteLink
+                  onClick={() => localStorage.setItem("isLogin", false)}
+                  to="signup"
+                >
+                  <MenuItem>Logout</MenuItem>
+                </RouteLink> */}
               </MenuList>
             </Menu>
           </Flex>

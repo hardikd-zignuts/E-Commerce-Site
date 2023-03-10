@@ -6,8 +6,9 @@ export const authSetData = (userData) => {
         payLoad: userData
     }
 }
-export const authSetStatus = () => {
+export const authSetStatus = (status) => {
     return {
-        type: AUTH_SET_STATUS
+        type: AUTH_SET_STATUS,
+        payLoad:status
     }
 }
