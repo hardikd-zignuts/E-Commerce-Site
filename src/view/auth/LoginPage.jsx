@@ -9,56 +9,59 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  FormErrorMessage,
 } from "@chakra-ui/react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Link as RouteLink, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import IsHaveAccount from "../../functions/IsHaveAccount";
-import { useDispatch } from "react-redux";
-import { authSetStatus } from "../../redux/actions/authActions";
+import { useEffect } from "react";
+import GetEncryptText from "../../functions/GetEncryptText";
+import { loginSchema } from "../../validation/authValidation";
 
 export default function LoginPage() {
-  const notify = () => toast.error("Invalid Credentials");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  useEffect(() => {
+    let login = JSON.parse(localStorage.getItem('isLogin'))
+    if (login) {
+      navigate('/products')
+    } else {
+      navigate('/login')
+    }
+
+  }, [navigate])
+
   const initialValues = {
     email: "temp@mail.com",
     password: "hardik@00110",
   };
   const onSubmit = (values) => {
+    const authToken = GetEncryptText((values.email + ',' + values.password))
     if (IsHaveAccount(values)) {
       localStorage.setItem("isLogin", true);
-      dispatch(authSetStatus(true));
+      localStorage.setItem('authToken', authToken)
       navigate("/products");
+      toast.success('Great to see you again! You\'ve been logged in', {
+        duration: 3000,
+        style: {
+          textAlign: 'center',
+        },
+      })
     } else {
-      notify();
+      toast.error("Invalid Credentials")
     }
   };
-  const validate = (values) => {
-    let errors = {};
 
-    if (!values.email) {
-      errors.email = "This field is required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email";
-    }
-    if (!values.password) {
-      errors.password = "This field is required";
-    }
 
-    return errors;
-  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    validationSchema: loginSchema
   });
   return (
     <>
-      <Toaster />
 
       <Flex
         minH={"100vh"}
@@ -69,7 +72,7 @@ export default function LoginPage() {
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
             <Heading fontSize={"4xl"}>Log in to your account</Heading>
-            <Text fontSize={"lg"} color={"gray.600"}>
+            <Text _dark={{ color: 'gray.300' }} fontSize={"lg"} color={"gray.600"}>
               to view all of our cool products 🛒
             </Text>
           </Stack>
@@ -81,21 +84,25 @@ export default function LoginPage() {
           >
             <Form onSubmit={formik.handleSubmit}>
               <Stack spacing={4}>
-                <FormControl id="email">
+                <FormControl id="email" isInvalid={formik.errors.email && formik.touched.email}>
                   <FormLabel>Email address</FormLabel>
                   <Input
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.email}
                     type="email"
                   />
+                  {formik.touched.email && <FormErrorMessage>{formik.errors.email}</FormErrorMessage>}
                 </FormControl>
-                <FormControl id="password">
+                <FormControl id="password" isInvalid={formik.errors.password && formik.touched.password}>
                   <FormLabel>Password</FormLabel>
                   <Input
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     type="password"
                   />
+                  {formik.touched.password && <FormErrorMessage>{formik.errors.password}</FormErrorMessage>}
                 </FormControl>
                 <Stack spacing={10}>
                   <Stack

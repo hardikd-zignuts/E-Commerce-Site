@@ -1,6 +1,6 @@
-const SetLocalData = (USER_DATA) => {
+const SetLocalData = (USER_DATA, isLogin, authToken) => {
     let loginArr = [];
-    localStorage.setItem('isLogin', true)
+    // localStorage.setItem('isLogin', true)
     let loginData = localStorage.getItem("loginData")
     if (loginData === null) {
         loginArr = []
@@ -9,6 +9,8 @@ const SetLocalData = (USER_DATA) => {
     }
     loginArr.push(USER_DATA)
     localStorage.setItem("loginData", JSON.stringify(loginArr));
+    isLogin && localStorage.setItem("isLogin", isLogin);
+    authToken && localStorage.setItem("authToken", authToken);
 }
 
 export default SetLocalData
