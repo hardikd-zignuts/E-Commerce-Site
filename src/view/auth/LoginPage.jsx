@@ -32,9 +32,13 @@ export default function LoginPage() {
   }, [navigate]);
 
   const initialValues = {
-    email: "hardikd@zignuts.com",
-    password: "Hardik@1",
+    email: "",
+    password: "",
   };
+  // const initialValues = {
+  //   email: "demo@mail.com",
+  //   password: "Demo@123",
+  // };
   const onSubmit = (values) => {
     const authToken = GetEncryptText(values.email + "," + values.password);
     if (IsHaveAccount(values)) {
