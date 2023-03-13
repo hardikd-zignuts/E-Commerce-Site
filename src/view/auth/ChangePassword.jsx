@@ -20,10 +20,15 @@ import GetProfileData from "./../../functions/GetProfileData";
 export default function ChangePassword() {
   const [currentUser] = useState(GetProfileData());
   const initialValues = {
-    passwordCurrent: "Hardik@1",
-    passwordNew: "Hardik@1",
-    passwordNewConfirm: "Hardik@1",
+    passwordCurrent: "",
+    passwordNew: "",
+    passwordNewConfirm: "",
   };
+  // const initialValues = {
+  //   passwordCurrent: "Hardik@1",
+  //   passwordNew: "Hardik@1",
+  //   passwordNewConfirm: "Hardik@1",
+  // };
   const handleUpdatePassword = (values) => {
     if (currentUser.password !== values.passwordCurrent) {
       toast.error("Current password is invalid");
@@ -72,7 +77,7 @@ export default function ChangePassword() {
             >
               <FormLabel>Current Password</FormLabel>
               <Input
-                type="text"
+                type="password"
                 value={formik.values.passwordCurrent}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -92,7 +97,7 @@ export default function ChangePassword() {
             >
               <FormLabel>New Password</FormLabel>
               <Input
-                type="text"
+                type="password"
                 value={formik.values.passwordNew}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -111,7 +116,7 @@ export default function ChangePassword() {
             >
               <FormLabel>Confirm Password</FormLabel>
               <Input
-                type="text"
+                type="password"
                 value={formik.values.passwordNewConfirm}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import { mobileSchema } from './schema/MobileSchema';
-import { passwordSchema } from './schema/PasswordSchema';
 
 
 export const updateProfile = Yup.object().shape({
