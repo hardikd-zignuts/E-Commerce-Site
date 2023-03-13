@@ -18,7 +18,7 @@ import SetProfileData from "../../functions/SetProfileData";
 import { updateProfile } from "../../validation/userValidation";
 
 export default function ProfileDetails() {
-  const [currentUser] = useState(GetProfileData())
+  const [currentUser] = useState(GetProfileData());
 
   let initialValues = {
     firstName: currentUser.firstName,
@@ -27,22 +27,20 @@ export default function ProfileDetails() {
     mobile: currentUser.mobile,
     password: currentUser.password,
     cPassword: currentUser.cPassword,
-  }
+  };
   const handleUpdateProfile = (values) => {
-    SetProfileData(values)
-    // if (SetProfileData(values)) {
-    toast.success('Profile updated successfully!')
-    // } else {
-    //   toast.error('Email address already exists')
-    // }
-  }
+    if (SetProfileData(values)) {
+      toast.error("Email address already exists");
+    } else {
+      toast.success("Profile updated successfully!");
+    }
+  };
 
   const formik = useFormik({
     initialValues,
     onSubmit: handleUpdateProfile,
-    validationSchema: updateProfile
-  })
-
+    validationSchema: updateProfile,
+  });
 
   return (
     <Flex
@@ -66,7 +64,10 @@ export default function ProfileDetails() {
             User Profile Edit
           </Heading>
 
-          <FormControl id="firstName" isInvalid={formik.errors.firstName && formik.touched.firstName}>
+          <FormControl
+            id="firstName"
+            isInvalid={formik.errors.firstName && formik.touched.firstName}
+          >
             <FormLabel>First name</FormLabel>
             <Input
               placeholder="First Name"
@@ -76,9 +77,11 @@ export default function ProfileDetails() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.firstName && <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>}
+            {formik.touched.firstName && (
+              <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl id="lastName" >
+          <FormControl id="lastName">
             <FormLabel>Last name</FormLabel>
             <Input
               placeholder="Last Name"
@@ -88,7 +91,10 @@ export default function ProfileDetails() {
               onChange={formik.handleChange}
             />
           </FormControl>
-          <FormControl id="email" isInvalid={formik.errors.email && formik.touched.email}>
+          <FormControl
+            id="email"
+            isInvalid={formik.errors.email && formik.touched.email}
+          >
             <FormLabel>Email address</FormLabel>
             <Input
               placeholder="your-email@example.com"
@@ -98,9 +104,14 @@ export default function ProfileDetails() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.email && <FormErrorMessage>{formik.errors.email}</FormErrorMessage>}
+            {formik.touched.email && (
+              <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl id="mobile" isInvalid={formik.errors.mobile && formik.touched.mobile}>
+          <FormControl
+            id="mobile"
+            isInvalid={formik.errors.mobile && formik.touched.mobile}
+          >
             <FormLabel>Mo no</FormLabel>
             <Input
               placeholder="+91 983** ****5"
@@ -110,10 +121,12 @@ export default function ProfileDetails() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.mobile && <FormErrorMessage>{formik.errors.mobile}</FormErrorMessage>}
+            {formik.touched.mobile && (
+              <FormErrorMessage>{formik.errors.mobile}</FormErrorMessage>
+            )}
           </FormControl>
 
-          <Stack mt='2' spacing={6} direction={["column", "row"]}>
+          <Stack mt="2" spacing={6} direction={["column", "row"]}>
             <Button
               type="submit"
               bg={"green.500"}
