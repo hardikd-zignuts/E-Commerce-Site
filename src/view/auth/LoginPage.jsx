@@ -34,7 +34,7 @@ export default function LoginPage() {
 
   const initialValues = {
     email: "temp@mail.com",
-    password: "hardik@00110",
+    password: "Hardik@00110",
   };
   const onSubmit = (values) => {
     const authToken = GetEncryptText((values.email + ',' + values.password))

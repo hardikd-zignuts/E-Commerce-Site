@@ -5,7 +5,8 @@ const initialData = {
     error: '',
     productData: [],
     skip: 0,
-    limit: 10
+    limit: 8,
+    total: 0
 }
 
 
@@ -23,7 +24,8 @@ const fetchReducer = (state = initialData, action) => {
                 ...state,
                 loading: false,
                 productData: action.payLoad,
-                error: ''
+                error: '',
+                total: action.payLoad.total
             }
         case FETCH_PRODUCT_FAILURE:
             return {
