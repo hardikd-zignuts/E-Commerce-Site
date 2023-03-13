@@ -2,6 +2,7 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -9,21 +10,37 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { toast } from "react-hot-toast";
+import SetUpdatedPassword from "../../functions/SetUpdatedPassword";
+import { changePassword } from "../../validation/authValidation";
+import GetProfileData from "./../../functions/GetProfileData";
 
 export default function ChangePassword() {
+  const [currentUser] = useState(GetProfileData());
   const initialValues = {
-
-  }
-  const handleUpdatePassword = () => {
-    toast.success('Password updated successfully!')
-  }
+    passwordCurrent: "Hardik@1",
+    passwordNew: "Hardik@1",
+    passwordNewConfirm: "Hardik@1",
+  };
+  const handleUpdatePassword = (values) => {
+    if (currentUser.password !== values.passwordCurrent) {
+      toast.error("Current password is invalid");
+    } else if (currentUser.password === values.passwordNew) {
+      toast.error("Old Password and New Password cannot be same");
+    } else {
+      SetUpdatedPassword(values, currentUser);
+      toast.success("Password updated successfully!");
+    }
+  };
 
   const formik = useFormik({
     initialValues,
-    onSubmit: handleUpdatePassword
-  })
+    onSubmit: handleUpdatePassword,
+    validationSchema: changePassword,
+  });
+
   return (
     <>
       <Flex
@@ -42,25 +59,71 @@ export default function ChangePassword() {
           p={6}
           my={12}
         >
-
           <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
             Change password
           </Heading>
           <Form onSubmit={formik.handleSubmit}>
-            <FormControl id="passwordCurrent" isRequired>
+            {/* Current  */}
+            <FormControl
+              id="passwordCurrent"
+              isInvalid={
+                formik.touched.passwordCurrent && formik.errors.passwordCurrent
+              }
+            >
               <FormLabel>Current Password</FormLabel>
-              <Input type="password" />
+              <Input
+                type="text"
+                value={formik.values.passwordCurrent}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.passwordCurrent && (
+                <FormErrorMessage>
+                  {formik.errors.passwordCurrent}
+                </FormErrorMessage>
+              )}
             </FormControl>
-            <FormControl id="passwordNew" isRequired>
+            {/* New password */}
+            <FormControl
+              id="passwordNew"
+              isInvalid={
+                formik.touched.passwordNew && formik.errors.passwordNew
+              }
+            >
               <FormLabel>New Password</FormLabel>
-              <Input type="password" />
+              <Input
+                type="text"
+                value={formik.values.passwordNew}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.passwordNew && (
+                <FormErrorMessage>{formik.errors.passwordNew}</FormErrorMessage>
+              )}
             </FormControl>
-            <FormControl id="passwordNewConfirm" isRequired>
+            {/* confirm pass  */}
+            <FormControl
+              id="passwordNewConfirm"
+              isInvalid={
+                formik.touched.passwordNewConfirm &&
+                formik.errors.passwordNewConfirm
+              }
+            >
               <FormLabel>Confirm Password</FormLabel>
-              <Input type="password" />
+              <Input
+                type="text"
+                value={formik.values.passwordNewConfirm}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.passwordNewConfirm && (
+                <FormErrorMessage>
+                  {formik.errors.passwordNewConfirm}
+                </FormErrorMessage>
+              )}
             </FormControl>
 
-            <Stack spacing={6}>
+            <Stack mt={2} spacing={6}>
               <Button
                 type="submit"
                 bg={"green.500"}
@@ -72,8 +135,6 @@ export default function ChangePassword() {
                 Update Password
               </Button>
             </Stack>
-
-
           </Form>
         </Stack>
       </Flex>

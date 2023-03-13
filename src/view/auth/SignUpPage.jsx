@@ -45,12 +45,12 @@ export default function SignUpPage() {
   //   cPassword: "",
   // };
   const initialValues = {
-    firstName: "John",
-    lastName: "Doe",
-    email: "temp@mail.com",
+    firstName: "Hardik",
+    lastName: "Desai",
+    email: "hardikd@zignuts.com",
     mobile: "6352604118",
-    password: "Hardik@00110",
-    cPassword: "Hardik@00110",
+    password: "Hardik@1",
+    cPassword: "Hardik@1",
   };
   const onSubmit = (values) => {
     const encData = GetEncryptText(values);

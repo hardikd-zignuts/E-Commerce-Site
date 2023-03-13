@@ -23,46 +23,42 @@ import { loginSchema } from "../../validation/authValidation";
 export default function LoginPage() {
   const navigate = useNavigate();
   useEffect(() => {
-    let login = JSON.parse(localStorage.getItem('isLogin'))
+    let login = JSON.parse(localStorage.getItem("isLogin"));
     if (login) {
-      navigate('/products')
+      navigate("/products");
     } else {
-      navigate('/login')
+      navigate("/login");
     }
-
-  }, [navigate])
+  }, [navigate]);
 
   const initialValues = {
-    email: "temp@mail.com",
-    password: "Hardik@00110",
+    email: "hardikd@zignuts.com",
+    password: "Hardik@1",
   };
   const onSubmit = (values) => {
-    const authToken = GetEncryptText((values.email + ',' + values.password))
+    const authToken = GetEncryptText(values.email + "," + values.password);
     if (IsHaveAccount(values)) {
       localStorage.setItem("isLogin", true);
-      localStorage.setItem('authToken', authToken)
+      localStorage.setItem("authToken", authToken);
       navigate("/products");
-      toast.success('Great to see you again! You\'ve been logged in', {
+      toast.success("Great to see you again! You've been logged in", {
         duration: 3000,
         style: {
-          textAlign: 'center',
+          textAlign: "center",
         },
-      })
+      });
     } else {
-      toast.error("Invalid Credentials")
+      toast.error("Invalid Credentials");
     }
   };
-
-
 
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema: loginSchema
+    validationSchema: loginSchema,
   });
   return (
     <>
-
       <Flex
         minH={"100vh"}
         align={"center"}
@@ -72,7 +68,11 @@ export default function LoginPage() {
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
             <Heading fontSize={"4xl"}>Log in to your account</Heading>
-            <Text _dark={{ color: 'gray.300' }} fontSize={"lg"} color={"gray.600"}>
+            <Text
+              _dark={{ color: "gray.300" }}
+              fontSize={"lg"}
+              color={"gray.600"}
+            >
               to view all of our cool products 🛒
             </Text>
           </Stack>
@@ -84,7 +84,10 @@ export default function LoginPage() {
           >
             <Form onSubmit={formik.handleSubmit}>
               <Stack spacing={4}>
-                <FormControl id="email" isInvalid={formik.errors.email && formik.touched.email}>
+                <FormControl
+                  id="email"
+                  isInvalid={formik.errors.email && formik.touched.email}
+                >
                   <FormLabel>Email address</FormLabel>
                   <Input
                     onBlur={formik.handleBlur}
@@ -92,9 +95,14 @@ export default function LoginPage() {
                     value={formik.values.email}
                     type="email"
                   />
-                  {formik.touched.email && <FormErrorMessage>{formik.errors.email}</FormErrorMessage>}
+                  {formik.touched.email && (
+                    <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                  )}
                 </FormControl>
-                <FormControl id="password" isInvalid={formik.errors.password && formik.touched.password}>
+                <FormControl
+                  id="password"
+                  isInvalid={formik.errors.password && formik.touched.password}
+                >
                   <FormLabel>Password</FormLabel>
                   <Input
                     onBlur={formik.handleBlur}
@@ -102,7 +110,11 @@ export default function LoginPage() {
                     value={formik.values.password}
                     type="password"
                   />
-                  {formik.touched.password && <FormErrorMessage>{formik.errors.password}</FormErrorMessage>}
+                  {formik.touched.password && (
+                    <FormErrorMessage>
+                      {formik.errors.password}
+                    </FormErrorMessage>
+                  )}
                 </FormControl>
                 <Stack spacing={10}>
                   <Stack
