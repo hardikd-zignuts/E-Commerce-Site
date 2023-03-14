@@ -8,6 +8,8 @@ import './assets/scss/main.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './redux';
+import reportWebVitals from './reportWebVitals';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,3 +23,6 @@ root.render(
     </ChakraProvider>
   </React.StrictMode>
 );
+
+
+reportWebVitals();
