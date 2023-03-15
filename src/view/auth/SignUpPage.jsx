@@ -85,7 +85,7 @@ export default function SignUpPage() {
     onSubmit,
     validationSchema: signupSchema,
   });
-  console.log(formik.errors);
+  // console.log(formik.errors);
   return (
     <>
       <Flex
@@ -129,6 +129,7 @@ export default function SignUpPage() {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         type="text"
+                        data-testid="signup-fname"
                       />
                       {formik.touched.firstName && (
                         <FormErrorMessage>
@@ -144,6 +145,7 @@ export default function SignUpPage() {
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
                         type="text"
+                        data-testid="signup-lname"
                       />
                     </FormControl>
                   </Box>
@@ -159,6 +161,7 @@ export default function SignUpPage() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     type="email"
+                    data-testid="signup-email"
                   />
                   {formik.touched.email && (
                     <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
@@ -175,6 +178,7 @@ export default function SignUpPage() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     type="tel"
+                    data-testid="signup-mobile"
                   />
                   {formik.touched.mobile && (
                     <FormErrorMessage>{formik.errors.mobile}</FormErrorMessage>
@@ -191,6 +195,7 @@ export default function SignUpPage() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     type="password"
+                    data-testid="signup-password"
                   />
                   {formik.touched.password && (
                     <FormErrorMessage>
@@ -210,6 +215,7 @@ export default function SignUpPage() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     type="password"
+                    data-testid="signup-cpassword"
                   />
                   {formik.touched.cPassword && (
                     <FormErrorMessage>

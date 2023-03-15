@@ -1,12 +1,11 @@
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import LoginPage from "../../view/auth/LoginPage"
 import '@testing-library/jest-dom'
-import { act } from "react-dom/test-utils"
 
 describe('Login Page Module', () => {
 
-    it('Weather all filed value not be empty', async () => {
+    it('Weather all filed are avalible in document or not', async () => {
         render(
             <BrowserRouter>
                 <LoginPage />

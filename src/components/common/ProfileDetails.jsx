@@ -70,6 +70,7 @@ export default function ProfileDetails() {
           >
             <FormLabel>First name</FormLabel>
             <Input
+              data-testid="profile-fname"
               placeholder="First Name"
               _placeholder={{ color: "gray.500" }}
               type="text"
@@ -84,6 +85,7 @@ export default function ProfileDetails() {
           <FormControl id="lastName">
             <FormLabel>Last name</FormLabel>
             <Input
+              data-testid="profile-lname"
               placeholder="Last Name"
               _placeholder={{ color: "gray.500" }}
               type="text"
@@ -97,6 +99,7 @@ export default function ProfileDetails() {
           >
             <FormLabel>Email address</FormLabel>
             <Input
+              data-testid="profile-email"
               placeholder="your-email@example.com"
               _placeholder={{ color: "gray.500" }}
               type="email"
@@ -114,6 +117,7 @@ export default function ProfileDetails() {
           >
             <FormLabel>Mo no</FormLabel>
             <Input
+              data-testid="profile-mobile"
               placeholder="+91 983** ****5"
               _placeholder={{ color: "gray.500" }}
               type="tel"
