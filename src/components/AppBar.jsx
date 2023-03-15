@@ -52,38 +52,34 @@ export default function AppBar({ status }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleColorMode = () => {
-    toggleColorMode()
-    if (localStorage.getItem('chakra-ui-color-mode') === 'light') {
-      toast('Light mode activated',
-        {
-          icon: '🌞',
-          style: {
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
-          },
-          duration: 1000,
-        }
-      );
+    toggleColorMode();
+    if (localStorage.getItem("chakra-ui-color-mode") === "light") {
+      toast("Light mode activated", {
+        icon: "🌞",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+        duration: 1000,
+      });
     } else {
-      toast('Dark mode activated',
-        {
-          icon: '🌚',
-          style: {
-            borderRadius: '10px',
-            background: '#fff',
-            color: '#333',
-          },
-          duration: 1000,
-        }
-      );
+      toast("Dark mode activated", {
+        icon: "🌚",
+        style: {
+          borderRadius: "10px",
+          background: "#fff",
+          color: "#333",
+        },
+        duration: 1000,
+      });
     }
-  }
+  };
   const handleLogOut = () => {
-    localStorage.setItem("isLogin", false)
-    localStorage.removeItem('authToken')
-    toast.success('Successfully logged out')
-  }
+    localStorage.setItem("isLogin", false);
+    localStorage.removeItem("authToken");
+    toast.success("Successfully logged out");
+  };
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -113,12 +109,11 @@ export default function AppBar({ status }) {
           </HStack>
           <Flex alignItems={"center"}>
             <div className="mx-2">
-              <Button onClick={handleColorMode}>
+              <Button data-testid="toggle-btn" onClick={handleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </div>
-            {
-              status &&
+            {status && (
               <Menu>
                 <MenuButton
                   as={Button}
@@ -146,15 +141,12 @@ export default function AppBar({ status }) {
                   <RouteLink to="reset">
                     <MenuItem>Change Password</MenuItem>
                   </RouteLink>
-                  <RouteLink
-                    onClick={handleLogOut}
-                    to="/login"
-                  >
+                  <RouteLink onClick={handleLogOut} to="/login">
                     <MenuItem>Logout</MenuItem>
                   </RouteLink>
                 </MenuList>
               </Menu>
-            }
+            )}
           </Flex>
         </Flex>
 
