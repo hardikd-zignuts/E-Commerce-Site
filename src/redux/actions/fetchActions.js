@@ -19,15 +19,15 @@ export const fetchProductFailure = error => {
         payLoad: error
     }
 }
-export const updateFetchProduct = (skip,limit) => {
+export const updateFetchProduct = (skip, limit) => {
     return {
         type: UPDATE_FETCH_PRODUCT,
-        skipNum:skip,
-        limitNum:limit
+        skipNum: skip,
+        limitNum: limit
     }
 }
 
-export const fetchProduct = (skip = 0, limit = 10) => {
+export const fetchProduct = (skip = 0, limit = 8) => {
     const URL = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
     return (dispatch) => {
         dispatch(fetchProductRequest())

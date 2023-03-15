@@ -41,7 +41,6 @@ const ProductGallery = () => {
     );
   }
 
-
   return (
     <>
       {loading && <Loader />}

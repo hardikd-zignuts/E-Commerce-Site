@@ -36,22 +36,22 @@ export default function SignUpPage() {
     }
     // eslint-disable-next-line
   }, [navigate]);
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    mobile: "",
-    password: "",
-    cPassword: "",
-  };
   // const initialValues = {
-  //   firstName: "Hardik",
-  //   lastName: "Desai",
-  //   email: "demo@mail.com",
-  //   mobile: "7878787878",
-  //   password: "Demo@123",
-  //   cPassword: "Demo@123",
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   mobile: "",
+  //   password: "",
+  //   cPassword: "",
   // };
+  const initialValues = {
+    firstName: "Hardik",
+    lastName: "Desai",
+    email: "demo@mail.com",
+    mobile: "7878787878",
+    password: "Demo@123",
+    cPassword: "Demo@123",
+  };
   const onSubmit = (values) => {
     const encData = GetEncryptText(values);
     const authToken = GetEncryptText(values.email + "," + values.password);

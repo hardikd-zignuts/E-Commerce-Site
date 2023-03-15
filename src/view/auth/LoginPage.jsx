@@ -31,14 +31,14 @@ export default function LoginPage() {
     }
   }, [navigate]);
 
-  const initialValues = {
-    email: "",
-    password: "",
-  };
   // const initialValues = {
-  //   email: "demo@mail.com",
-  //   password: "Demo@123",
+  //   email: "",
+  //   password: "",
   // };
+  const initialValues = {
+    email: "demo@mail.com",
+    password: "Demo@123",
+  };
   const onSubmit = (values) => {
     const authToken = GetEncryptText(values.email + "," + values.password);
     if (IsHaveAccount(values)) {
@@ -98,6 +98,7 @@ export default function LoginPage() {
                     onChange={formik.handleChange}
                     value={formik.values.email}
                     type="email"
+                    data-testid="login-email"
                   />
                   {formik.touched.email && (
                     <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
@@ -113,6 +114,7 @@ export default function LoginPage() {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     type="password"
+                    data-testid="login-password"
                   />
                   {formik.touched.password && (
                     <FormErrorMessage>
@@ -131,6 +133,7 @@ export default function LoginPage() {
                     <RouteLink to={"/signup"}>Create New Account</RouteLink>
                   </Stack>
                   <Button
+                    data-testid="login-btn"
                     type="submit"
                     bg={"blue.400"}
                     color={"white"}
