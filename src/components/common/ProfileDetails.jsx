@@ -82,6 +82,7 @@ export default function ProfileDetails() {
               <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
             )}
           </FormControl>
+
           <FormControl id="lastName">
             <FormLabel>Last name</FormLabel>
             <Input
@@ -93,6 +94,7 @@ export default function ProfileDetails() {
               onChange={formik.handleChange}
             />
           </FormControl>
+
           <FormControl
             id="email"
             isInvalid={formik.errors.email && formik.touched.email}
@@ -111,6 +113,7 @@ export default function ProfileDetails() {
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
             )}
           </FormControl>
+
           <FormControl
             id="mobile"
             isInvalid={formik.errors.mobile && formik.touched.mobile}

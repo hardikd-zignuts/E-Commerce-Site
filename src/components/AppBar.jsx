@@ -17,7 +17,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
-import user from "../assets/img/user.png";
+// import user from "../assets/img/user.png";
 import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { toast } from "react-hot-toast";
@@ -122,12 +122,22 @@ export default function AppBar({ status }) {
                   cursor={"pointer"}
                   minW={0}
                 >
-                  <Avatar size={"sm"} src={user} />
+                  <Avatar
+                    size={"sm"}
+                    src={
+                      "https://ca.slack-edge.com/T3HG71ULS-U04M1JEGZ28-fc0e656f95a1-512"
+                    }
+                  />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
-                    <Avatar size={"2xl"} src={user} />
+                    <Avatar
+                      size={"2xl"}
+                      src={
+                        "https://ca.slack-edge.com/T3HG71ULS-U04M1JEGZ28-fc0e656f95a1-512"
+                      }
+                    />
                   </Center>
                   <br />
                   <Center>
