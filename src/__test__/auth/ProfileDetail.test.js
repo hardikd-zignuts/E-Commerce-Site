@@ -10,7 +10,7 @@ const render = (component) =>
 
 describe('Profile Deatials Page', () => {
 
-    it('Weather all filed are avalible in document or not', () => {
+    it('Weather all filed are avalible in document or not',async () => {
         render(
             <BrowserRouter>
                 <ProfileDetails />
@@ -21,10 +21,12 @@ describe('Profile Deatials Page', () => {
         const email = screen.getByTestId('profile-email')
         const mobile = screen.getByTestId('profile-mobile')
         
-        expect(fName).toBeInTheDocument();
-        expect(lName).toBeInTheDocument();
-        expect(email).toBeInTheDocument();
-        expect(mobile).toBeInTheDocument();
+        await waitFor(()=>{
+            expect(fName).toBeInTheDocument();
+            expect(lName).toBeInTheDocument();
+            expect(email).toBeInTheDocument();
+            expect(mobile).toBeInTheDocument();
+        })
 
     })
 })

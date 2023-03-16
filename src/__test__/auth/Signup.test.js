@@ -57,6 +57,14 @@ describe('Sign up Page Module', () => {
         fireEvent.change(cPassword, { target: { value: 'Tempmail@123' } })
 
 
+        await waitFor(() => {
+            expect(fName).toBeInTheDocument();
+            expect(lName).toBeInTheDocument();
+            expect(email).toBeInTheDocument();
+            expect(mobile).toBeInTheDocument();
+            expect(password).toBeInTheDocument();
+            expect(cPassword).toBeInTheDocument();
+        })
 
     })
 })
