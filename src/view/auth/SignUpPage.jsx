@@ -85,7 +85,6 @@ export default function SignUpPage() {
     onSubmit,
     validationSchema: signupSchema,
   });
-  console.log(formik.errors);
   return (
     <>
       <Flex
