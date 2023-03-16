@@ -17,7 +17,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
-import user from "../assets/img/user.png";
+// import user from "../assets/img/user.png";
 import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { toast } from "react-hot-toast";
@@ -52,38 +52,34 @@ export default function AppBar({ status }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleColorMode = () => {
-    toggleColorMode()
-    if (localStorage.getItem('chakra-ui-color-mode') === 'light') {
-      toast('Light mode activated',
-        {
-          icon: '🌞',
-          style: {
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
-          },
-          duration: 1000,
-        }
-      );
+    toggleColorMode();
+    if (localStorage.getItem("chakra-ui-color-mode") === "light") {
+      toast("Light mode activated", {
+        icon: "🌞",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+        duration: 1000,
+      });
     } else {
-      toast('Dark mode activated',
-        {
-          icon: '🌚',
-          style: {
-            borderRadius: '10px',
-            background: '#fff',
-            color: '#333',
-          },
-          duration: 1000,
-        }
-      );
+      toast("Dark mode activated", {
+        icon: "🌚",
+        style: {
+          borderRadius: "10px",
+          background: "#fff",
+          color: "#333",
+        },
+        duration: 1000,
+      });
     }
-  }
+  };
   const handleLogOut = () => {
-    localStorage.setItem("isLogin", false)
-    localStorage.removeItem('authToken')
-    toast.success('Successfully logged out')
-  }
+    localStorage.setItem("isLogin", false);
+    localStorage.removeItem("authToken");
+    toast.success("Successfully logged out");
+  };
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -117,8 +113,7 @@ export default function AppBar({ status }) {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </div>
-            {
-              status &&
+            {status && (
               <Menu>
                 <MenuButton
                   as={Button}
@@ -127,12 +122,22 @@ export default function AppBar({ status }) {
                   cursor={"pointer"}
                   minW={0}
                 >
-                  <Avatar size={"sm"} src={user} />
+                  <Avatar
+                    size={"sm"}
+                    src={
+                      "https://ca.slack-edge.com/T3HG71ULS-U04M1JEGZ28-fc0e656f95a1-512"
+                    }
+                  />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
-                    <Avatar size={"2xl"} src={user} />
+                    <Avatar
+                      size={"2xl"}
+                      src={
+                        "https://ca.slack-edge.com/T3HG71ULS-U04M1JEGZ28-fc0e656f95a1-512"
+                      }
+                    />
                   </Center>
                   <br />
                   <Center>
@@ -146,15 +151,12 @@ export default function AppBar({ status }) {
                   <RouteLink to="reset">
                     <MenuItem>Change Password</MenuItem>
                   </RouteLink>
-                  <RouteLink
-                    onClick={handleLogOut}
-                    to="/login"
-                  >
+                  <RouteLink onClick={handleLogOut} to="/login">
                     <MenuItem>Logout</MenuItem>
                   </RouteLink>
                 </MenuList>
               </Menu>
-            }
+            )}
           </Flex>
         </Flex>
 

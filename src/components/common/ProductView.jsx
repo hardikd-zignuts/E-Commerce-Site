@@ -20,20 +20,26 @@ import {
   MdStarOutline,
 } from "react-icons/md";
 import { TbBrand4Chan } from "react-icons/tb";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SliderImage from "./SliderImage";
 import Loader from "./Loader";
 import GetProductDetailedView from "../../api/GetProductDetailedView";
 const ProductView = () => {
+  const navigate = useNavigate();
   const { productId } = useParams();
+
   const [thisProduct, setThisProduct] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      let data = await GetProductDetailedView(productId);
-      setThisProduct(data);
-    };
-    fetchData();
+    if (productId !== NaN) {
+      navigate("/products");
+    } else {
+      const fetchData = async () => {
+        let data = await GetProductDetailedView(productId);
+        setThisProduct(data);
+      };
+      fetchData();
+    }
     // eslint-disable-next-line
   }, []);
 

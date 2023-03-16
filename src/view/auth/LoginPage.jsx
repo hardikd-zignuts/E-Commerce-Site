@@ -19,12 +19,32 @@ import IsHaveAccount from "../../functions/IsHaveAccount";
 import { useEffect } from "react";
 import GetEncryptText from "../../functions/GetEncryptText";
 import { loginSchema } from "../../validation/authValidation";
+import GetDecryptText from "../../functions/GetDecryptText";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   useEffect(() => {
     let login = JSON.parse(localStorage.getItem("isLogin"));
-    if (login) {
+    let isHaveValidToken = false;
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      let encToken = GetDecryptText(localStorage.getItem("authToken"));
+
+      const authEmail = encToken.split(",")[0];
+      const authPassword = encToken.split(",")[1];
+      isHaveValidToken = JSON.parse(localStorage.getItem("loginData")).some(
+        (item) => {
+          let temp = GetDecryptText(item);
+          let isTemp = false;
+          if (temp.email === authEmail && temp.password === authPassword) {
+            isTemp = true;
+          }
+          return isTemp;
+        }
+      );
+    }
+
+    if (login && isHaveValidToken) {
       navigate("/products");
     } else {
       navigate("/login");
