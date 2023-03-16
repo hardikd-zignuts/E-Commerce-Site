@@ -1,5 +1,4 @@
 import CryptoJS from "crypto-js";
-import { useNavigate } from "react-router-dom";
 const secretPass = "XkhZG4fW2t2W";
 
 const GetDecryptText = (text) => {

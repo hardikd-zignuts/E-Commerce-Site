@@ -31,7 +31,7 @@ const ProductView = () => {
   const [thisProduct, setThisProduct] = useState({});
 
   useEffect(() => {
-    if (productId !== NaN) {
+    if (isNaN(productId)) {
       navigate("/products");
     } else {
       const fetchData = async () => {
