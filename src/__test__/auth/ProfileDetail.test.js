@@ -22,7 +22,7 @@ describe('Profile Deatials Page', () => {
             </BrowserRouter>
         )
 
-        const profileForm = screen.getByRole('form')
+        // const profileForm = screen.getByRole('form')
         // const fName = screen.getByTestId('profile-fname')
         // const lName = screen.getByTestId('profile-lname')
         // const email = screen.getByTestId('profile-email')

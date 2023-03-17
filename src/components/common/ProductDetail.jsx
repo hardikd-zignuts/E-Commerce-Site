@@ -26,7 +26,7 @@ const ProductDetail = ({
 }) => {
   return (
     <>
-      <Col sm={12} md={6} lg={4} xl={3}>
+      <Col data-testid={`product-${id}`} sm={12} md={6} lg={4} xl={3}>
         <Center py={12}>
           <Box
             role={"group"}
