@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { loginSchema } from "../../validation/authValidation";
 import GetDecryptText from "../../functions/GetDecryptText";
 import GetEncryptText from '../../functions/GetEncryptText'
+import { messages } from "../../constant/messages";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -65,14 +66,14 @@ export default function LoginPage() {
       localStorage.setItem("isLogin", true);
       localStorage.setItem("authToken", authToken);
       navigate("/products");
-      toast.success("Great to see you again! You've been logged in", {
+      toast.success(messages.loginWelcome, {
         duration: 3000,
         style: {
           textAlign: "center",
         },
       });
     } else {
-      toast.error("Invalid Credentials");
+      toast.error(messages.invalidCredentials);
     }
   };
 

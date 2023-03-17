@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { toast } from "react-hot-toast";
+import { messages } from "../../constant/messages";
 import SetUpdatedPassword from "../../functions/SetUpdatedPassword";
 import { changePassword } from "../../validation/authValidation";
 import GetProfileData from "./../../functions/GetProfileData";
@@ -31,12 +32,12 @@ export default function ChangePassword() {
   // };
   const handleUpdatePassword = (values) => {
     if (currentUser.password !== values.passwordCurrent) {
-      toast.error("Current password is invalid");
+      toast.error(messages.passwordInvalid);
     } else if (currentUser.password === values.passwordNew) {
-      toast.error("Old Password and New Password cannot be same");
+      toast.error(messages.passwordUnique);
     } else {
       SetUpdatedPassword(values, currentUser);
-      toast.success("Password updated successfully!");
+      toast.success(messages.passwordUpdate);
     }
   };
 

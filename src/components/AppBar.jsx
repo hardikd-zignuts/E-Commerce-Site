@@ -21,6 +21,7 @@ import logo from "../assets/img/logo.png";
 import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { toast } from "react-hot-toast";
+import { messages } from "../constant/messages";
 
 const LinksText = ["Home"];
 
@@ -54,7 +55,7 @@ export default function AppBar({ status }) {
   const handleColorMode = () => {
     toggleColorMode();
     if (localStorage.getItem("chakra-ui-color-mode") === "light") {
-      toast("Light mode activated", {
+      toast(messages.lightMode, {
         icon: "🌞",
         style: {
           borderRadius: "10px",
@@ -64,7 +65,7 @@ export default function AppBar({ status }) {
         duration: 1000,
       });
     } else {
-      toast("Dark mode activated", {
+      toast(messages.darkMode, {
         icon: "🌚",
         style: {
           borderRadius: "10px",
@@ -78,7 +79,7 @@ export default function AppBar({ status }) {
   const handleLogOut = () => {
     localStorage.setItem("isLogin", false);
     localStorage.removeItem("authToken");
-    toast.success("Successfully logged out");
+    toast.success(messages.logout);
   };
   return (
     <>

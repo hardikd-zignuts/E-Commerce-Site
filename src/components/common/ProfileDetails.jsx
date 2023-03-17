@@ -16,6 +16,7 @@ import GetProfileData from "../../functions/GetProfileData";
 import { Form } from "react-bootstrap";
 import SetProfileData from "../../functions/SetProfileData";
 import { updateProfile } from "../../validation/userValidation";
+import { messages } from "../../constant/messages";
 
 export default function ProfileDetails() {
   const [currentUser] = useState(GetProfileData());
@@ -30,9 +31,9 @@ export default function ProfileDetails() {
   };
   const handleUpdateProfile = (values) => {
     if (SetProfileData(values)) {
-      toast.error("Email address already exists");
+      toast.error(messages.emailExists);
     } else {
-      toast.success("Profile updated successfully!");
+      toast.success(messages.profileUpdate);
     }
   };
 

@@ -23,6 +23,7 @@ import SetLocalData from "../../functions/SetLocalData";
 import GetEncryptText from "../../functions/GetEncryptText";
 import { useEffect } from "react";
 import { signupSchema } from "../../validation/authValidation";
+import { messages } from "../../constant/messages";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -60,23 +61,17 @@ export default function SignUpPage() {
     if (localStorage.getItem("loginData") === null) {
       SetLocalData(encData, true, authToken);
       navigate("/products");
-      toast.success(
-        "Congratulations, your account has been created successfully!",
-        {
-          duration: 3000,
-        }
-      );
+      toast.success(messages.accountCreationSucess, {
+        duration: 3000,
+      });
     } else if (CheckUserAuth(values)) {
-      toast.error("User Already Exists");
+      toast.error(messages.userAlerdyExists);
     } else {
       SetLocalData(encData, true, authToken);
       navigate("/products");
-      toast.success(
-        "Congratulations, your account has been created successfully!",
-        {
-          duration: 3000,
-        }
-      );
+      toast.success(messages.accountCreationSucess, {
+        duration: 3000,
+      });
     }
   };
 
