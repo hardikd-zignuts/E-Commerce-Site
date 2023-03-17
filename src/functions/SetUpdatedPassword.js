@@ -1,3 +1,9 @@
+/**
+ * It takes the updated password and the current user data as arguments, and then updates the local
+ * storage with the new password
+ * @param updatedPassword - The updated password object.
+ * @param currentUserData - The current user data.
+ */
 import GetDecryptText from "./GetDecryptText";
 import GetEncryptText from "./GetEncryptText";
 

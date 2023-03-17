@@ -1,3 +1,8 @@
+/**
+ * It takes an id as an argument, and returns a promise that resolves to the data from the API call
+ * @param id - The id of the product you want to get.
+ * @returns the data from the response.
+ */
 import axios from "axios"
 
 

@@ -10,6 +10,11 @@ const initialData = {
 }
 
 
+/**
+ * It takes in the current state and an action, and returns the next state
+ * @param [state] - This is the current state of the reducer.
+ * @param action - This is the action object that is dispatched from the action creator.
+ */
 const fetchReducer = (state = initialData, action) => {
     switch (action.type) {
 
