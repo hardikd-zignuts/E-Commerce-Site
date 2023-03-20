@@ -58,5 +58,11 @@ describe('Profile Deatials Page', () => {
             expect(mobile).toBeInTheDocument
             expect(email).toBeInTheDocument
         })
+        await waitFor(() => {
+            expect(fName.value).toBe('John');
+            expect(lName.value).toBe('Doe');
+            expect(mobile.value).toBe('8989898989');
+            expect(email.value).toBe('temp@mail.com');
+        })
     })
 })

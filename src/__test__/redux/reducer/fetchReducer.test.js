@@ -4,7 +4,7 @@ import fetchReducer from "../../../redux/reducers/fetchReducer"
 import { fetchProductRequest, fetchProductSuccess } from "../../../redux/actions/fetchActions"
 
 
-describe('Test for Check Auth Actions', () => {
+describe('Test for Check Fetch Actions', () => {
 
     it("api: initial state", () => {
         const initialData = {

@@ -58,12 +58,12 @@ describe('Sign up Page Module', () => {
 
 
         await waitFor(() => {
-            expect(fName).toBeInTheDocument();
-            expect(lName).toBeInTheDocument();
-            expect(email).toBeInTheDocument();
-            expect(mobile).toBeInTheDocument();
-            expect(password).toBeInTheDocument();
-            expect(cPassword).toBeInTheDocument();
+            expect(fName.value).toBe('John');
+            expect(lName.value).toBe('Doe');
+            expect(email.value).toBe('temp@mail.com');
+            expect(mobile.value).toBe('8989898989');
+            expect(password.value).toBe('Tempmail@123');
+            expect(cPassword.value).toBe('Tempmail@123');
         })
 
     })

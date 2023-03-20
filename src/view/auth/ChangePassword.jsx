@@ -67,8 +67,7 @@ export default function ChangePassword() {
           <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
             Change password
           </Heading>
-          <Form onSubmit={formik.handleSubmit}>
-            {/* Current  */}
+          <Form data-testid="password-form" onSubmit={formik.handleSubmit}>
             <FormControl
               id="passwordCurrent"
               isInvalid={
@@ -81,6 +80,7 @@ export default function ChangePassword() {
                 value={formik.values.passwordCurrent}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                data-testid="current-pass"
               />
               {formik.touched.passwordCurrent && (
                 <FormErrorMessage>
@@ -101,6 +101,7 @@ export default function ChangePassword() {
                 value={formik.values.passwordNew}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                data-testid="new-pass"
               />
               {formik.touched.passwordNew && (
                 <FormErrorMessage>{formik.errors.passwordNew}</FormErrorMessage>
@@ -120,6 +121,7 @@ export default function ChangePassword() {
                 value={formik.values.passwordNewConfirm}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                data-testid="confirm-pass"
               />
               {formik.touched.passwordNewConfirm && (
                 <FormErrorMessage>

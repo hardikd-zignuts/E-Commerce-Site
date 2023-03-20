@@ -22,8 +22,6 @@ describe('Dark mode button test', () => {
     })
 })
 
-
-
 describe('Logout button test', () => {
 
     beforeEach(() => {
@@ -41,7 +39,6 @@ describe('Logout button test', () => {
 
     })
 })
-
 
 describe('Dark mode button Visiblity test ', () => {
 
