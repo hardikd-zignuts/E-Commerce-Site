@@ -7,7 +7,7 @@ export const fetchProductRequest = () => {
         type: FETCH_PRODUCT_REQUEST
     }
 }
-export const fetchProductSuccess = (product) => {
+export const fetchProductSuccess = product => {
     return {
         type: FETCH_PRODUCT_SUCCESS,
         payLoad: product,
@@ -26,7 +26,6 @@ export const updateFetchProduct = (skip, limit) => {
         limitNum: limit
     }
 }
-
 export const fetchProduct = (skip = 0, limit = 8) => {
     const URL = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
     return (dispatch) => {
