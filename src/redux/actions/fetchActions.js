@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import { FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCCESS, UPDATE_FETCH_PRODUCT } from "../actionTypes/fetchTypes"
 
 

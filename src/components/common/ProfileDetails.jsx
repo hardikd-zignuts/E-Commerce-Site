@@ -59,7 +59,7 @@ export default function ProfileDetails() {
         p={6}
         my={12}
       >
-        <Form onSubmit={formik.handleSubmit}>
+        <Form data-testid='profile-form' onSubmit={formik.handleSubmit}>
           <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
             User Profile Edit
           </Heading>
