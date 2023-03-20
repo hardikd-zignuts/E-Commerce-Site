@@ -59,4 +59,4 @@ describe('Profile Deatials Page', () => {
             expect(email).toBeInTheDocument
         })
     })
-})''
+})

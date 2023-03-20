@@ -38,4 +38,8 @@ describe('Login Page Module', () => {
         })
 
     })
+
+    it('When click on logout then should be redirect to /login', async () => {
+        
+    })
 })
