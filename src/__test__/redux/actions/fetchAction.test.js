@@ -1,6 +1,5 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import '@testing-library/jest-dom'
-import { fetchProductRequest, fetchProductFailure, fetchProductSuccess } from '../../redux/actions/fetchActions'
+import { fetchProductRequest, fetchProductFailure, fetchProductSuccess } from '../../../redux/actions/fetchActions'
 
 
 describe('Test for Redux actions', () => {

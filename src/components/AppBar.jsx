@@ -114,7 +114,7 @@ export default function AppBar({ status }) {
               </Button>
             </div>
             {status && (
-              <Menu>
+              <Menu data-testid="profile-menu">
                 <MenuButton
                   as={Button}
                   rounded={"full"}

@@ -1,7 +1,7 @@
 /* The above code is testing the dark mode button. */
 import React from "react";
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import AppBar from '../components/AppBar'
 import { BrowserRouter as Router } from 'react-router-dom'
 import PrivateRoutes from '../view/auth/PrivateRoutes'
@@ -43,4 +43,22 @@ describe('Logout button test', () => {
 })
 
 
+describe('Dark mode button Visiblity test ', () => {
 
+    beforeAll(() => {
+        localStorage.setItem('isLogin', true);
+    })
+
+    it('dark mode button is visible or not', async () => {
+        render(
+            <Router>
+                <AppBar status={false} />
+            </Router>
+        )
+
+        waitFor(() => {
+            const profileMenu = screen.getByTestId('profile-menu')
+            expect(profileMenu).toBeVisible()
+        })
+    })
+})
