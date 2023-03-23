@@ -12,8 +12,8 @@ const GetProfileData = () => {
     const authEmail = authToken.split(',')[0]
     const authPassword = authToken.split(',')[1]
 
-    const currentUserData = loginData.filter((item) => (GetDecryptText(item).email === authEmail) && (GetDecryptText(item).password === authPassword))
-    return GetDecryptText(currentUserData[0].toString())
+    const currentUserData = loginData.find((item) => (GetDecryptText(item).email === authEmail) && (GetDecryptText(item).password === authPassword))
+    return GetDecryptText(currentUserData.toString())
 }
 
 export default GetProfileData

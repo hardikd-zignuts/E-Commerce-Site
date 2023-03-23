@@ -12,7 +12,7 @@ function App() {
   }, [location])
 
   return (
-  /* This is the main component of the app. It is the parent component of all the other components. */
+    /* This is the main component of the app. It is the parent component of all the other components. */
     <div className="App">
       <Toaster
         position="top-center"

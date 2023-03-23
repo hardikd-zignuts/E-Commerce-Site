@@ -1,11 +1,12 @@
 import * as Yup from 'yup';
+import { validationMessages } from '../../constant/messages';
 
 /* This is a validation schema for the password field. */
 export const passwordSchema = Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .max(32, 'Password cannot be more than 32 characters')
-    .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .matches(/[0-9]/, 'Password must contain at least one digit')
-    .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character')
-    .required('Password is Required')
+    .min(8, validationMessages.passwordMinLength)
+    .max(32, validationMessages.passwordMaxLength)
+    .matches(/[A-Z]/,validationMessages.passwordUppercaseLetter)
+    .matches(/[a-z]/, validationMessages.passwordLowercaseLatter)
+    .matches(/[0-9]/, validationMessages.passwordNumChar)
+    .matches(/[!@#$%^&*(),.?":{}|<>]/, validationMessages.passwordSpecialcaseLatter)
+    .required(validationMessages.passwordRequired)

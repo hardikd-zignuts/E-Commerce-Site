@@ -13,3 +13,21 @@ export const messages = {
     accountCreationSucess: "Congratulations, your account has been created successfully!",
     userAlerdyExists: "User Already Exists",
 }
+export const validationMessages = {
+    mobileRequired: 'Mobile Number is required',
+    mobileMaxLength: 'Mobile Number cannot be more than 12 digits',
+    mobileMinLength: 'Mobile number must be at least 10 digits',
+    mobileNumChar: 'Mobile number can only contain numeric characters',
+    passwordRequired: 'Password is Required',
+    passwordMinLength: 'Password must be at least 8 characters',
+    passwordMaxLength: 'Password cannot be more than 32 characters',
+    passwordNumChar: 'Password must contain at least one digit',
+    passwordUppercaseLetter: 'Password must contain at least one uppercase letter',
+    passwordLowercaseLatter: 'Password must contain at least one lowercase letter',
+    passwordSpecialcaseLatter: 'Password must contain at least one special character',
+    passwordMatch: 'Passwords must match',
+    requiredPasswordConfirm: 'Confirm Password is required',
+    emailInvalid: 'Invalid email address',
+    emailRequired: 'Email is required',
+    nameRequired: 'Name is required',
+}

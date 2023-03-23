@@ -19,6 +19,6 @@ export const authSetData = (userData) => {
 export const authSetStatus = (status) => {
     return {
         type: AUTH_SET_STATUS,
-        payLoad:status
+        payLoad: status
     }
 }

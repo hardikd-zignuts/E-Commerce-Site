@@ -22,6 +22,9 @@ import { NavLink as RouteLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { toast } from "react-hot-toast";
 import { messages } from "../constant/messages";
+import { useEffect, useState } from "react";
+import GetProfileData from "../functions/GetProfileData";
+import { useSelector } from "react-redux";
 
 const LinksText = ["Home"];
 
@@ -51,6 +54,12 @@ const NavLink = ({ children }) => {
 export default function AppBar({ status }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentUserData, setcurrentUserData] = useState([]);
+  const authTokenChanged = useSelector((state) => state.auth.authTokenChanged);
+
+  useEffect(() => {
+    setcurrentUserData(GetProfileData());
+  }, [authTokenChanged]);
 
   const handleColorMode = () => {
     toggleColorMode();
@@ -142,7 +151,12 @@ export default function AppBar({ status }) {
                   </Center>
                   <br />
                   <Center>
-                    <p>Hardik Desai</p>
+                    <p>
+                      {currentUserData &&
+                        currentUserData.firstName +
+                          " " +
+                          currentUserData.lastName}
+                    </p>
                   </Center>
                   <br />
                   <MenuDivider />

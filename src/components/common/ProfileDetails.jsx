@@ -17,9 +17,12 @@ import { Form } from "react-bootstrap";
 import SetProfileData from "../../functions/SetProfileData";
 import { updateProfile } from "../../validation/userValidation";
 import { messages } from "../../constant/messages";
+import { useDispatch } from "react-redux";
+import { authSetStatus } from "../../redux/actions/authActions";
 
 export default function ProfileDetails() {
   const [currentUser] = useState(GetProfileData());
+  const dispatch = useDispatch();
 
   let initialValues = {
     firstName: currentUser.firstName,
@@ -34,6 +37,7 @@ export default function ProfileDetails() {
       toast.error(messages.emailExists);
     } else {
       toast.success(messages.profileUpdate);
+      dispatch(authSetStatus(localStorage.getItem("authToken")));
     }
   };
 

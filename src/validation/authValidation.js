@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { validationMessages } from '../constant/messages';
 import { mobileSchema } from './schema/MobileSchema';
 import { passwordSchema } from './schema/PasswordSchema';
 
@@ -6,24 +7,24 @@ import { passwordSchema } from './schema/PasswordSchema';
 
 export const signupSchema = Yup.object().shape({
     firstName: Yup.string()
-        .required('Name is required'),
+        .required(validationMessages.nameRequired),
     email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
+        .email(validationMessages.emailInvalid)
+        .required(validationMessages.emailRequired),
     mobile: mobileSchema,
     password: passwordSchema,
     cPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        .required('Confirm Password is required'),
+        .oneOf([Yup.ref('password'), null], validationMessages.passwordMatch)
+        .required(validationMessages.requiredPasswordConfirm),
 });
 /* Creating a schema for the login form. */
 
 export const loginSchema = Yup.object().shape({
     email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
+        .email(validationMessages.emailInvalid)
+        .required(validationMessages.emailRequired),
     password: Yup.string()
-        .required('Password is Required')
+        .required(validationMessages.passwordRequired)
 });
 /* A validation schema for the change password form. */
 
@@ -31,7 +32,7 @@ export const changePassword = Yup.object().shape({
     passwordCurrent: passwordSchema,
     passwordNew: passwordSchema,
     passwordNewConfirm: Yup.string()
-        .oneOf([Yup.ref('passwordNew'), null], 'Passwords must match')
-        .required('Confirm Password is required')
+        .oneOf([Yup.ref('passwordNew'), null], validationMessages.passwordMatch)
+        .required(validationMessages.requiredPasswordConfirm)
 });
 
